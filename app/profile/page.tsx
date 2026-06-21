@@ -1,0 +1,15 @@
+import Link from "next/link";
+import { BriefcaseBusiness, ChevronRight, CreditCard, FileDown, Globe2, LogOut, Mail, Settings, ShieldCheck, UserPen } from "lucide-react";
+import { MobileShell } from "@/components/mobile-shell";
+import { TopBar } from "@/components/ui";
+
+export default function ProfilePage() {
+  return <MobileShell><main className="mobile-page"><TopBar action={<Link href="/admin" className="chip dark">Organizer</Link>} />
+    <section className="card profile-hero" style={{ marginTop: 18 }}><div className="avatar lg green">한재</div><h1 className="profile-name">김한재</h1><div className="profile-role">NOOGU · Product Lead</div><p className="profile-bio">사람과 사람 사이의 좋은 맥락이 오래 남는 제품을 만듭니다.</p><Link href="/u/hanjae" className="chip" style={{ marginTop: 16 }}><Globe2 size={13} /> noogu.kr/u/hanjae</Link></section>
+    <section className="card card-pad section list" style={{ paddingTop: 4, paddingBottom: 4 }}>{[
+      [UserPen, "프로필 편집", "이름, 소속, 소개, SNS"], [CreditCard, "명함 관리 · OCR", "명함 이미지와 추출 정보"], [FileDown, "내 데이터 내보내기", "연결 정보 Excel 다운로드"], [BriefcaseBusiness, "주최자 센터", "행사와 참가자 관리"], [Settings, "설정", "알림, 공개 범위, 계정"]
+    ].map(([Icon, title, sub]) => <Link href={title === "주최자 센터" ? "/admin" : title === "명함 관리 · OCR" ? "/onboarding" : "#"} className="list-row" key={String(title)}><span className="detail-icon"><Icon size={18} /></span><div className="list-content"><p className="list-title">{String(title)}</p><p className="list-sub">{String(sub)}</p></div><ChevronRight size={17} color="#aaa" /></Link>)}</section>
+    <section className="card card-pad section"><div className="detail-row"><span className="detail-icon"><Mail size={18} /></span><div><div className="detail-label">이메일</div><div className="detail-value">hanjae@noogu.kr</div></div></div><div className="detail-row"><span className="detail-icon"><ShieldCheck size={18} /></span><div><div className="detail-label">계정 보안</div><div className="detail-value">이메일 인증 완료 · 소셜 계정 연결</div></div></div></section>
+    <Link href="/auth" className="button danger full section"><LogOut size={17} /> 로그아웃</Link>
+  </main></MobileShell>;
+}

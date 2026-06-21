@@ -1,0 +1,6 @@
+import Link from "next/link";
+import { Apple, Mail } from "lucide-react";
+
+export default function AuthPage() {
+  return <main className="mobile-page" style={{ minHeight: "100dvh", display: "grid", alignContent: "center", paddingBottom: 40 }}><section style={{ textAlign: "center", marginBottom: 34 }}><div className="brand" style={{ fontSize: 30 }}>NOOGU<span className="brand-dot">.</span></div><h1 className="page-title" style={{ marginTop: 34 }}>만남을 기억하는<br />가장 쉬운 방법.</h1><p className="page-copy">누구를, 언제, 어디서 만났는지.</p></section><section className="card card-pad form-grid"><button className="button full"><Apple size={18} /> Apple로 계속하기</button><button className="button ghost full">G&nbsp;&nbsp;Google로 계속하기</button><div style={{ display: "flex", gap: 12, alignItems: "center", color: "#999", fontSize: 11 }}><span style={{ height: 1, background: "#eee", flex: 1 }} />또는<span style={{ height: 1, background: "#eee", flex: 1 }} /></div><label className="field"><span>이메일</span><input className="input" type="email" placeholder="name@company.com" /></label><Link href="/onboarding" className="button green full"><Mail size={17} /> 이메일로 계속하기</Link></section><p style={{ color: "#858985", fontSize: 11, lineHeight: 1.6, textAlign: "center", marginTop: 20 }}>계속하면 NOOGU의 이용약관 및 개인정보처리방침에 동의하게 됩니다.</p></main>;
+}
