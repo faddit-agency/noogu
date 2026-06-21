@@ -1,7 +1,9 @@
 import { NextResponse } from "next/server";
 
 export async function POST(request: Request) {
-  const form = await request.formData();
+  let form: FormData;
+  try { form = await request.formData(); }
+  catch { return NextResponse.json({ data: null, error: { code: "INVALID_FORM", message: "multipart/form-data 형식으로 이미지를 전송해주세요." }, meta: null }, { status: 400 }); }
   if (!(form.get("image") instanceof File)) return NextResponse.json({ data: null, error: { code: "IMAGE_REQUIRED", message: "명함 이미지가 필요합니다." }, meta: null }, { status: 400 });
   // Integration boundary: strip EXIF, store privately, then call the selected OCR provider.
   return NextResponse.json({

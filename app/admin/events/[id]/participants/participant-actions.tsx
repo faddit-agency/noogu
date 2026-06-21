@@ -1,0 +1,5 @@
+"use client";
+import { Download, Mail } from "lucide-react";
+import { participants } from "@/lib/mock-data";
+
+export function ParticipantActions(){const download=()=>{const rows=[["이름","회사","직급","상태","신청일"],...participants.map(p=>[p.name,p.company,p.role,p.status,p.applied])];const csv="\uFEFF"+rows.map(row=>row.map(cell=>`"${String(cell).replaceAll('"','""')}"`).join(",")).join("\n");const url=URL.createObjectURL(new Blob([csv],{type:"text/csv;charset=utf-8"}));const anchor=document.createElement("a");anchor.href=url;anchor.download="NOOGU-participants.csv";anchor.click();URL.revokeObjectURL(url)};const mail=()=>{const subject=encodeURIComponent("[NOOGU] Fashion Networking Day 안내");const body=encodeURIComponent("안녕하세요. Fashion Networking Day 참가 안내드립니다.\n\n행사 일시: 2027년 3월 20일 14:00\n장소: 성수 XYZ Seoul");location.href=`mailto:?subject=${subject}&body=${body}`};return <div className="action-row"><button className="button ghost" onClick={download}><Download size={16}/> 내려받기</button><button className="button" onClick={mail}><Mail size={16}/> 안내 메일</button></div>}

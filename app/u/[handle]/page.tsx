@@ -1,6 +1,11 @@
 import Link from "next/link";
-import { Building2, Download, Instagram, Linkedin, Mail, Phone, QrCode } from "lucide-react";
+import { QrCode } from "lucide-react";
+import { PublicProfileContent } from "./public-profile-content";
 
-export default function PublicProfilePage() {
-  return <main className="mobile-page" style={{ paddingBottom: 40 }}><header className="topbar"><Link className="brand" href="/">NOOGU<span className="brand-dot">.</span></Link><span className="chip green"><QrCode size={13} /> Profile</span></header><section className="card profile-hero" style={{ marginTop: 18 }}><div className="avatar lg green">한재</div><h1 className="profile-name">김한재</h1><div className="profile-role">NOOGU · Product Lead</div><p className="profile-bio">사람과 사람 사이의 좋은 맥락이 오래 남는 제품을 만듭니다. 행사 경험과 관계 관리의 다음 표준을 만들고 있어요.</p><div className="two-col" style={{ marginTop: 22 }}><button className="button green"><Download size={16} /> 연락처 저장</button><Link href="/connect/demo" className="button">연결하기</Link></div></section><section className="card card-pad section detail-grid"><div className="detail-row"><span className="detail-icon"><Building2 size={18} /></span><div><div className="detail-label">소속</div><div className="detail-value">NOOGU · Product Lead</div></div></div><div className="detail-row"><span className="detail-icon"><Mail size={18} /></span><div><div className="detail-label">이메일</div><div className="detail-value">hanjae@noogu.kr</div></div></div><div className="detail-row"><span className="detail-icon"><Phone size={18} /></span><div><div className="detail-label">전화번호</div><div className="detail-value">010-2408-2027</div></div></div></section><section className="two-col section"><button className="button ghost"><Linkedin size={17} /> LinkedIn</button><button className="button ghost"><Instagram size={17} /> Instagram</button></section></main>;
+export default async function PublicProfilePage({ params }: { params: Promise<{ handle: string }> }) {
+  const { handle } = await params;
+  return <main className="mobile-page" style={{ paddingBottom: 40 }}>
+    <header className="topbar"><Link className="brand" href="/">NOOGU<span className="brand-dot">.</span></Link><span className="chip green"><QrCode size={13} /> @{handle}</span></header>
+    <PublicProfileContent/>
+  </main>;
 }

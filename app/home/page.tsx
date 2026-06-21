@@ -1,14 +1,15 @@
 import Link from "next/link";
-import { Bell, CalendarCheck, ChevronRight, Sparkles, UserPlus, UsersRound } from "lucide-react";
+import { CalendarCheck, ChevronRight, Sparkles, UserPlus, UsersRound } from "lucide-react";
 import { MobileShell } from "@/components/mobile-shell";
 import { EventCard, PersonRow, TopBar } from "@/components/ui";
 import { events, people } from "@/lib/mock-data";
+import { ActionMenu } from "@/components/action-menu";
 
 export default function MemberHomePage() {
   return (
     <MobileShell>
       <main className="mobile-page">
-        <TopBar action={<button className="icon-button" aria-label="알림"><Bell size={19} /></button>} />
+        <TopBar action={<ActionMenu variant="notifications"/>} />
         <section style={{ marginTop: 18 }}>
           <span className="eyebrow">Good afternoon</span>
           <h1 className="page-title">반가워요, 한재님.<br />오늘도 좋은 만남을.</h1>
